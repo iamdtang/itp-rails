@@ -26,15 +26,12 @@
     </p>
 
     <ul id="course-list" class="course-list">
-        <% @terms.each do |term| %>
-        <li class="course active-course">
-            <a id="ember847" href="/courses/20163404" class="ember-view">
-                <%= term.semester %>
-                <%= term.year %>
-                -
-                <%= term.course.name %>
-            </a>
-        </li>
-        <% end %>
+      <% @terms.each do |term| %>
+      <li class="course active-course">
+          <%= link_to(course_path(term)) do %>
+            <%= term.semester %> <%= term.year %> - <%= term.course.name %>
+          <% end %>
+      </li>
+      <% end %>
     </ul>
 </div>
