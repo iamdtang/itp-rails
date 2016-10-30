@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
   def index
-    @terms = Term.all()
+    @terms = Term.order(id: :desc).all()
   end
 end
