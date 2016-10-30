@@ -1,0 +1,40 @@
+<div class="container">
+    <nav>
+        <ul class="nav nav-pills">
+            <li role="presentation">
+                <a id="ember462" href="/" class="ember-view">
+                    Home
+                </a>
+            </li>
+            <li id="ember477" role="presentation" class="ember-view">
+                <a id="ember478" href="/jobs" class="has-unread-count ember-view">
+                    Jobs
+                    <!---->
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="https://www.youtube.com/channel/UCLhLYSysw4juedNhsXGo7Vw?feature=watch" target="_blank">
+                    Lectures
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <h1>ITP Web Development Courses</h1>
+
+    <p>
+        Please choose a course to visit the class site.
+    </p>
+
+    <ul id="course-list" class="course-list">
+        <% @terms.each do |term| %>
+        <li class="course active-course">
+            <a id="ember847" href="/courses/20163404" class="ember-view">
+                <%= term.semester %>
+                <%= term.year %>
+                -
+                <%= term.course.name %>
+            </a>
+        </li>
+        <% end %>
+    </ul>
+</div>
