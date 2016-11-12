@@ -1,1 +1,16 @@
-<%= @term.course.name %>
+<div class="page-header">
+  <h1>
+    <%= @term.course.department %> <%= @term.course.number %> - <%= @term.course.name %>
+  </h1>
+</div>
+
+<h2>Assignments</h2>
+<ol>
+  <% @term.course.assignments.each do |assignment| %>
+    <li>
+      <%= link_to(assignment_path(assignment)) do %>
+        <%= assignment.title %> (due <%= assignment.due.strftime('%-m/%-d') %>)
+      <% end %>
+    </li>
+  <% end %>
+</ol>
