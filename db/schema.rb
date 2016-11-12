@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112174602) do
+ActiveRecord::Schema.define(version: 20161112191603) do
 
   create_table "assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
@@ -30,22 +30,24 @@ ActiveRecord::Schema.define(version: 20161112174602) do
   create_table "lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
     t.date     "date"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "course_id"
+    t.text     "body",       limit: 65535
+  end
+
+  create_table "resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "lecture_id"
+    t.string   "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "link_title"
   end
 
   create_table "terms", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string  "semester",  limit: 50, default: "", null: false
     t.string  "year",      limit: 10, default: "", null: false
     t.integer "course_id",                         null: false
-  end
-
-  create_table "units", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer  "lecture_id"
-    t.string   "link"
-    t.text     "body",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
   end
 
 end

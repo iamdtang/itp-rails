@@ -4,6 +4,24 @@
   </h1>
 </div>
 
+<h2>Lectures</h2>
+<% @term.course.lectures.each do |lecture| %>
+  <div>
+    <%= link_to(lecture_path(lecture)) do %>
+      <%= lecture.title %>
+    <% end %>
+    <ul>
+      <% lecture.resources.each do |resource| %>
+        <li>
+          <a href="<%= resource.link %>" target="_blank">
+            <%= resource.link_title %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h2>Assignments</h2>
 <ol>
   <% @term.course.assignments.each do |assignment| %>
