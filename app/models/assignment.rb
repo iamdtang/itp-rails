@@ -5,6 +5,6 @@ class Assignment < ApplicationRecord
       fenced_code_blocks: true
     })
 
-    markdown.render(this.body).html_safe
+    markdown.render(body).html_safe
   end
 end
