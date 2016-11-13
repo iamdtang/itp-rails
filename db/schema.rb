@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113000220) do
+ActiveRecord::Schema.define(version: 20161113015040) do
 
   create_table "assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
@@ -36,8 +36,14 @@ ActiveRecord::Schema.define(version: 20161113000220) do
     t.text     "body",       limit: 65535
   end
 
+  create_table "lectures_resources", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "lecture_id"
+    t.integer "resource_id"
+    t.index ["lecture_id"], name: "index_lectures_resources_on_lecture_id", using: :btree
+    t.index ["resource_id"], name: "index_lectures_resources_on_resource_id", using: :btree
+  end
+
   create_table "resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer  "lecture_id"
     t.string   "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
