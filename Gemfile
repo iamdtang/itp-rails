@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', :groups => [:development, :test, :production]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use mysql as the database for Active Record
@@ -49,3 +48,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Require the Markdown converter gem
 gem 'redcarpet'
+
+gem 'dotenv-rails', :groups => [:development, :test, :production]
+
+# For ES6 support
+gem 'sprockets', '>=3.0.0.beta'
+gem 'sprockets-es6'
