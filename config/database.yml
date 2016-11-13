@@ -15,11 +15,11 @@ default: &default
   pool: 5
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %>
   host: <%= ENV['DB_HOST'] %>
 
 development:
   <<: *default
-  database: <%= ENV['DB_NAME'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -49,6 +49,3 @@ test:
 #
 production:
   <<: *default
-  database: itp-rails_production
-  username: itp-rails
-  password: <%= ENV['ITP-RAILS_DATABASE_PASSWORD'] %>
