@@ -1,11 +1,15 @@
 <h1>ITP Web Development Courses</h1>
-<p>Please choose a course to visit the class site.</p>
-<ul id="course-list" class="course-list">
-  <% @terms.each do |term| %>
-    <li class="course active-course">
-      <%= link_to(course_path(term)) do %>
-        <%= term.semester %> <%= term.year %> - <%= term.course.name %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<% if @terms.empty? %>
+  <p>No active courses at the moment.</p>
+<% else %>
+  <p>Please choose a course to visit the class site.</p>
+  <ul id="course-list" class="course-list">
+    <% @terms.each do |term| %>
+      <li class="course active-course">
+        <%= link_to(course_path(term)) do %>
+          <%= term.semester %> <%= term.year %> - <%= term.course.name %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112191603) do
+ActiveRecord::Schema.define(version: 20161113000220) do
 
   create_table "assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
@@ -45,9 +45,10 @@ ActiveRecord::Schema.define(version: 20161112191603) do
   end
 
   create_table "terms", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string  "semester",  limit: 50, default: "", null: false
-    t.string  "year",      limit: 10, default: "", null: false
-    t.integer "course_id",                         null: false
+    t.string  "semester",  limit: 50, default: "",    null: false
+    t.string  "year",      limit: 10, default: "",    null: false
+    t.integer "course_id",                            null: false
+    t.boolean "active",               default: false
   end
 
 end

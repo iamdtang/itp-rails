@@ -4,31 +4,44 @@
   </h1>
 </div>
 
-<h2>Lectures</h2>
-<% @term.course.lectures.each do |lecture| %>
-  <div>
-    <%= link_to(lecture_path(lecture)) do %>
-      <%= lecture.title %>
+<div class="row">
+  <div class="col-sm-8">
+    <h3 class="block-title">Lectures</h3>
+    <% @term.course.lectures.reverse.each do |lecture| %>
+      <div class="lecture">
+        <span class="lecture-date">
+          <%= lecture.date.strftime('%-m/%-d') %>
+        </span>
+
+        <% if (lecture.body) %>
+          <%= link_to(lecture_path(lecture)) do %>
+            <%= lecture.title %>
+          <% end %>
+        <% else %>
+          <%= lecture.title %>
+        <% end %>
+        <ul>
+          <% lecture.resources.each do |resource| %>
+            <li>
+              <a href="<%= resource.link %>" target="_blank">
+                <%= resource.link_title %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-    <ul>
-      <% lecture.resources.each do |resource| %>
+  </div>
+  <div class="col-sm-4">
+    <h3 class="block-title">Assignments</h3>
+    <ol>
+      <% @term.course.assignments.each do |assignment| %>
         <li>
-          <a href="<%= resource.link %>" target="_blank">
-            <%= resource.link_title %>
-          </a>
+          <%= link_to(assignment_path(assignment)) do %>
+            <%= assignment.title %> (due <%= assignment.due.strftime('%-m/%-d') %>)
+          <% end %>
         </li>
       <% end %>
-    </ul>
+    </ol>
   </div>
-<% end %>
-
-<h2>Assignments</h2>
-<ol>
-  <% @term.course.assignments.each do |assignment| %>
-    <li>
-      <%= link_to(assignment_path(assignment)) do %>
-        <%= assignment.title %> (due <%= assignment.due.strftime('%-m/%-d') %>)
-      <% end %>
-    </li>
-  <% end %>
-</ol>
+</div>
