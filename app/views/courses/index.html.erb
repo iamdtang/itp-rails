@@ -7,7 +7,7 @@
     <% @terms.each do |term| %>
       <li class="course active-course">
         <%= link_to(course_path(term)) do %>
-          <%= term.semester %> <%= term.year %> - <%= term.course.name %>
+          <%= term %>
         <% end %>
       </li>
     <% end %>
