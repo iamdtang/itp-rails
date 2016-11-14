@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   def index
-    @terms = Term.where({ active: true }).order({ id: :desc }).all
+    @terms = Term.active_terms.reverse
   end
 
   def show
