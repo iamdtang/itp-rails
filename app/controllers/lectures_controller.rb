@@ -1,15 +1,19 @@
 class LecturesController < ApplicationController
   def show
-    @lecture = Lecture.find(params[:id])
+    begin
+      @lecture = Lecture.find(params[:id])
 
-    if @lecture.body
+      unless @lecture.body
+        raise "No lecture body"
+      end
+
       markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, {
         prettify: true,
         fenced_code_blocks: true
       })
       @body = markdown.render(@lecture.body).html_safe
-    else
-      redirect_to("/404")
+    rescue
+      redirect_to :page_not_found
     end
   end
 end

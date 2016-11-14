@@ -1,16 +1,15 @@
 <div class="page-header">
   <h1>
-    <%= @term.course.department %> <%= @term.course.number %> - <%= @term.course.name %>
+    <%= @course.department %> <%= @course.number %> - <%= @course.name %>
   </h1>
 </div>
-
 <div class="row">
   <div class="col-sm-8">
     <h3 class="block-title">Lectures</h3>
-    <% @term.course.lectures.reverse.each do |lecture| %>
+    <% @course.lectures.reverse.each do |lecture| %>
       <div class="lecture">
         <span class="lecture-date">
-          <%= lecture.date.strftime('%-m/%-d') %>
+          <%= format_date(lecture.date) %>
         </span>
 
         <% if (lecture.body) %>
@@ -35,10 +34,10 @@
   <div class="col-sm-4">
     <h3 class="block-title">Assignments</h3>
     <ol>
-      <% @term.course.assignments.each do |assignment| %>
+      <% @course.assignments.each do |assignment| %>
         <li>
           <%= link_to(assignment_path(assignment)) do %>
-            <%= assignment.title %> (due <%= assignment.due.strftime('%-m/%-d') %>)
+            <%= assignment.title %> (due <%= format_date(assignment.due) %>)
           <% end %>
         </li>
       <% end %>

@@ -5,11 +5,13 @@
   <p>Please choose a course to visit the class site.</p>
   <ul id="course-list" class="course-list">
     <% @terms.each do |term| %>
-      <li class="course active-course">
-        <%= link_to(course_path(term)) do %>
-          <%= term %>
-        <% end %>
-      </li>
+      <% term.courses.each do |course| %>
+        <li class="course active-course">
+          <%= link_to(course_path({ term_id: term.id, course_id: course.id })) do %>
+            <%= term %> - <%= course.name %>
+          <% end %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 <% end %>

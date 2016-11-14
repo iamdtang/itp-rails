@@ -1,8 +1,8 @@
 <div>
   <br>
   <% @lecture.course.terms.each do |term| %>
-    <%= link_to(course_path(term)) do %>
-      <%= term %>
+    <%= link_to(course_path({ term_id: term.id, course_id: @lecture.course.id })) do %>
+      <%= term %> - <%= @lecture.course.name %>
     <% end %>
     <br>
   <% end %>

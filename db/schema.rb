@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113015040) do
+ActiveRecord::Schema.define(version: 20161114005451) do
 
   create_table "assignments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20161113015040) do
     t.string "name",       limit: 100
     t.string "department", limit: 50
     t.string "number",     limit: 10
+  end
+
+  create_table "courses_terms", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "course_id"
+    t.integer "term_id"
+    t.index ["course_id"], name: "index_courses_terms_on_course_id", using: :btree
+    t.index ["term_id"], name: "index_courses_terms_on_term_id", using: :btree
   end
 
   create_table "lectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -51,10 +58,9 @@ ActiveRecord::Schema.define(version: 20161113015040) do
   end
 
   create_table "terms", unsigned: true, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string  "semester",  limit: 50, default: "",    null: false
-    t.string  "year",      limit: 10, default: "",    null: false
-    t.integer "course_id",                            null: false
-    t.boolean "active",               default: false
+    t.string  "semester", limit: 50, default: "",    null: false
+    t.string  "year",     limit: 10, default: "",    null: false
+    t.boolean "active",              default: false
   end
 
 end

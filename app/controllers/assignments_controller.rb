@@ -1,5 +1,9 @@
 class AssignmentsController < ApplicationController
   def show
-    @assignment = Assignment.find(params[:id])
+    begin
+      @assignment = Assignment.find(params[:id])
+    rescue
+      redirect_to :page_not_found
+    end
   end
 end
