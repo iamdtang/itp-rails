@@ -7,7 +7,7 @@
     <% @terms.each do |term| %>
       <% term.courses.each do |course| %>
         <li class="course active-course">
-          <%= link_to(course_path({ term_id: term.id, course_id: course.id })) do %>
+          <%= link_to(course_path({ term_id: term.id, course_slug: course.slug })) do %>
             <%= term %> - <%= course.name %>
           <% end %>
         </li>

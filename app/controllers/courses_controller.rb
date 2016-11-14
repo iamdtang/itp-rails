@@ -4,7 +4,11 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @term = Term.find(params[:term_id])
-    @course = Course.find(params[:course_id])
+    begin
+      @term = Term.find(params[:term_id])
+      @course = Course.where(slug: params[:course_slug]).first!
+    rescue
+      redirect_to :page_not_found
+    end
   end
 end

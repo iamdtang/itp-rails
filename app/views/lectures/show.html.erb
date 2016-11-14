@@ -1,11 +1,10 @@
 <div>
   <br>
   <% @lecture.course.terms.each do |term| %>
-    <%= link_to(course_path({ term_id: term.id, course_id: @lecture.course.id })) do %>
+    <%= link_to(course_path({ term_id: term.id, course_slug: @lecture.course.slug })) do %>
       <%= term %> - <%= @lecture.course.name %>
     <% end %>
     <br>
   <% end %>
 </div>
-
 <%= @body %>
