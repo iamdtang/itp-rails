@@ -7,6 +7,7 @@ class CoursesController < ApplicationController
     begin
       @term = Term.find(params[:term_id])
       @course = Course.where(slug: params[:course_slug]).first!
+      @lectures = @course.lectures.order(date: :desc)
     rescue
       redirect_to :page_not_found
     end
